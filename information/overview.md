@@ -12,7 +12,7 @@ The website's main navigation menu is accessible from all pages and includes the
 2. **Skills**: [https://nbarkiya.xyz/skills](https://nbarkiya.xyz/skills)
 3. **Projects**: [https://nbarkiya.xyz/projects](https://nbarkiya.xyz/projects)
 4. **Experience**: [https://nbarkiya.xyz/experience](https://nbarkiya.xyz/experience)
-5. **Contributions**: [https://nbarkiya.xyz/contributions](https://nbarkiya.xyz/contributions)
+<!-- 5. **Contributions**: [https://nbarkiya.xyz/contributions](https://nbarkiya.xyz/contributions) -->
 6. **Contact**: [https://nbarkiya.xyz/contact](https://nbarkiya.xyz/contact)
 
 ---

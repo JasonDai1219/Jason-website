@@ -7,6 +7,7 @@ import React from "react";
 import { Icons } from "@/components/common/icons";
 import { Button } from "@/components/ui/button";
 import { ExperienceInterface } from "@/config/experience";
+import { cn } from "@/lib/utils"; // ✅ 用你项目里现成的 cn
 
 // Helper function to extract year from date
 const getYearFromDate = (date: Date): string => {
@@ -29,20 +30,40 @@ interface ExperienceCardProps {
 }
 
 const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
+  // ✅ 横向 logo 自动放大（OPTIC / HDSI 这类）
+  const isWideLogo =
+    experience.id === "optic-lab" ||
+    experience.id === "hdsi" ||
+    experience.company.toLowerCase().includes("optic") ||
+    experience.company.toLowerCase().includes("data science institute") ||
+    experience.company.toLowerCase().includes("halıcıoglu");
+
   return (
     <div className="group relative overflow-hidden rounded-lg border bg-background p-4 sm:p-6 transition-all duration-300">
       <div className="flex items-start gap-3 sm:gap-4">
         {experience.logo && (
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg border-2 border-border overflow-hidden bg-white flex-shrink-0">
+          <div
+            className={cn(
+              "rounded-lg border-2 border-border overflow-hidden bg-white flex-shrink-0 flex items-center justify-center",
+              isWideLogo
+                ? "w-28 h-16 sm:w-36 sm:h-20" // ✅ 横向 logo：更大更宽
+                : "w-10 h-10 sm:w-12 sm:h-12" // ✅ 默认：保持原大小
+            )}
+          >
             <Image
               src={experience.logo}
               alt={experience.company}
-              width={48}
-              height={48}
-              className="w-full h-full object-contain p-2"
+              width={isWideLogo ? 320 : 48}
+              height={isWideLogo ? 160 : 48}
+              className={cn(
+                "w-full h-full object-contain",
+                isWideLogo ? "p-2" : "p-2" // 你也可以 wide 用 p-1，更“贴边”
+              )}
+              priority={isWideLogo} // ✅ 让 OPTIC/HDSI 更快加载
             />
           </div>
         )}
+
         <div className="flex-1 min-w-0">
           <div className="flex flex-col gap-1 sm:gap-2">
             <div className="flex items-start sm:items-center gap-2">
@@ -60,20 +81,24 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
                 </a>
               )}
             </div>
+
             <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-sm text-muted-foreground">
               <span className="font-medium">{experience.company}</span>
               <span className="hidden sm:inline">•</span>
               <span>{experience.location}</span>
             </div>
+
             <div className="flex items-center gap-2">
               <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
                 {getDurationText(experience.startDate, experience.endDate)}
               </span>
             </div>
           </div>
+
           <p className="mt-2 sm:mt-3 text-sm text-muted-foreground line-clamp-2">
             {experience.description[0]}
           </p>
+
           <div className="mt-3 sm:mt-4 flex flex-wrap gap-1">
             {experience.skills.slice(0, 2).map((skill, index) => (
               <span
@@ -91,6 +116,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
           </div>
         </div>
       </div>
+
       <div className="mt-3 sm:mt-4 flex justify-end">
         <Button
           variant="outline"

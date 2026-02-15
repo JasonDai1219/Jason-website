@@ -8,68 +8,77 @@ type PagesConfig = {
       title: string;
       description: string;
     };
-    // featuredDescription: string;
   };
 };
 
 export const pagesConfig: PagesConfig = {
   home: {
     title: "Home",
-    description: "Welcome to my portfolio website.",
+    description:
+      "Personal portfolio of Ruizhe (Jason) Dai, focused on data science, machine learning, and AI-assisted systems.",
     metadata: {
-      title: "Home",
-      description: "Naman Barkiya's portfolio website.",
+      title: "Ruizhe (Jason) Dai",
+      description:
+        "Ruizhe (Jason) Dai is a Data Science and Machine Learning engineer building data-driven systems and AI-assisted tools.",
     },
   },
   skills: {
     title: "Skills",
-    description: "Key skills that define my professional identity.",
+    description:
+      "Core technical skills across data science, machine learning, and ML systems.",
     metadata: {
-      title: "Skills",
+      title: "Skills | Ruizhe (Jason) Dai",
       description:
-        "Naman Barkiya's key skills that define his professional identity.",
+        "Technical skills in data science, machine learning, ML engineering, and AI systems.",
     },
   },
   projects: {
     title: "Projects",
-    description: "Showcasing impactful projects and technical achievements.",
+    description:
+      "Selected projects showcasing machine learning systems, data pipelines, and applied AI research.",
     metadata: {
-      title: "Projects",
-      description: "Naman Barkiya's projects in building web applications.",
-    },
-  },
-  contact: {
-    title: "Contact",
-    description: "Let's connect and explore collaborations.",
-    metadata: {
-      title: "Contact",
-      description: "Contact Naman Barkiya.",
-    },
-  },
-  contributions: {
-    title: "Contributions",
-    description: "Open-source contributions and community involvement.",
-    metadata: {
-      title: "Contributions",
+      title: "Projects | Ruizhe (Jason) Dai",
       description:
-        "Naman Barkiya's open-source contributions and community involvement.",
-    },
-  },
-  resume: {
-    title: "Resume",
-    description: "Naman Barkiya's resume.",
-    metadata: {
-      title: "Resume",
-      description: "Naman Barkiya's resume.",
+        "Projects in machine learning, data science, AI-assisted systems, and applied research by Ruizhe (Jason) Dai.",
     },
   },
   experience: {
     title: "Experience",
-    description: "Professional journey and career timeline.",
+    description:
+      "Research and industry experience in data science, machine learning, and AI systems.",
     metadata: {
-      title: "Experience",
+      title: "Experience | Ruizhe (Jason) Dai",
       description:
-        "Naman Barkiya's professional journey and experience timeline.",
+        "Professional and research experience in data science, machine learning, and AI systems.",
+    },
+  },
+  contributions: {
+    title: "Contributions",
+    description:
+      "Research, systems, and open contributions across AI, data, and machine learning.",
+    metadata: {
+      title: "Contributions | Ruizhe (Jason) Dai",
+      description:
+        "Research and system contributions in AI, machine learning, and data-driven systems.",
+    },
+  },
+  contact: {
+    title: "Contact",
+    description:
+      "Get in touch to discuss research, internships, and collaboration opportunities.",
+    metadata: {
+      title: "Contact | Ruizhe (Jason) Dai",
+      description:
+        "Contact Ruizhe (Jason) Dai for research collaboration and professional opportunities.",
+    },
+  },
+  resume: {
+    title: "Resume",
+    description: "Resume of Ruizhe (Jason) Dai.",
+    metadata: {
+      title: "Resume | Ruizhe (Jason) Dai",
+      description:
+        "Resume of Ruizhe (Jason) Dai, Data Science and Machine Learning engineer.",
     },
   },
 };

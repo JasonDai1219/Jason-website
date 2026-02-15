@@ -97,8 +97,14 @@ export const metadata = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID;
+
+// 没有 GA 就跳过（开发阶段完全 OK）
   if (!GA_ID) {
-    throw new Error("Missing Google Analytics ID");
+    return (
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    );
   }
 
   return (

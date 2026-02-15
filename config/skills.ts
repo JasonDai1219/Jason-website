@@ -9,152 +9,111 @@ export interface skillsInterface {
 
 export const skillsUnsorted: skillsInterface[] = [
   {
-    name: "Next.js",
+    name: "Python",
     description:
-      "Effortlessly build dynamic apps with routing, layouts, loading UI, and API routes.",
+      "Data processing, machine learning, and end-to-end experimentation pipelines.",
     rating: 5,
-    icon: Icons.nextjs,
+    icon: Icons.python,
   },
   {
-    name: "React",
+    name: "SQL",
     description:
-      "Craft interactive user interfaces using components, state, props, and virtual DOM.",
+      "Analytical querying and performance-minded database work (indexing, query rewrites).",
     rating: 5,
-    icon: Icons.react,
+    icon: Icons.sql,
   },
   {
-    name: "GraphQL",
+    name: "PyTorch",
     description:
-      "Fetch data precisely with a powerful query language for APIs and runtime execution.",
+      "Training and evaluating deep learning models for forecasting and multimodal learning.",
+    rating: 5,
+    icon: Icons.pytorch,
+  },
+  {
+    name: "Machine Learning",
+    description:
+      "Supervised/unsupervised learning, time series forecasting, and anomaly detection.",
+    rating: 5,
+    icon: Icons.machineLearning,
+  },
+  {
+    name: "Data Pipelines",
+    description:
+      "ETL and orchestration workflows for large-scale data processing and model-ready datasets.",
     rating: 4,
-    icon: Icons.graphql,
+    icon: Icons.dataPipeline,
   },
   {
-    name: "Nest.js",
+    name: "Spark",
     description:
-      "Create scalable and modular applications with a progressive Node.js framework.",
+      "Distributed data processing for ETL and large-scale feature generation.",
     rating: 4,
-    icon: Icons.nestjs,
+    icon: Icons.spark,
   },
   {
-    name: "express.js",
+    name: "Airflow",
     description:
-      "Build web applications and APIs quickly using a fast, unopinionated Node.js framework.",
-    rating: 5,
-    icon: Icons.express,
-  },
-  {
-    name: "Node.js",
-    description:
-      "Run JavaScript on the server side, enabling dynamic and responsive applications.",
-    rating: 5,
-    icon: Icons.nodejs,
-  },
-  {
-    name: "MongoDB",
-    description:
-      "Store and retrieve data seamlessly with a flexible and scalable NoSQL database.",
-    rating: 5,
-    icon: Icons.mongodb,
-  },
-  {
-    name: "Typescript",
-    description:
-      "Enhance JavaScript with static types, making code more understandable and reliable.",
-    rating: 5,
-    icon: Icons.typescript,
-  },
-  {
-    name: "Javascript",
-    description:
-      "Create interactive and dynamic web experiences with the versatile scripting language.",
-    rating: 5,
-    icon: Icons.javascript,
-  },
-  {
-    name: "HTML 5",
-    description:
-      "Structure web content beautifully with the latest version of HyperText Markup Language.",
+      "Workflow orchestration for scheduled pipelines and automated jobs.",
     rating: 4,
-    icon: Icons.html5,
+    icon: Icons.airflow,
   },
   {
-    name: "CSS 3",
+    name: "PostgreSQL",
     description:
-      "Style web pages creatively with the latest iteration of Cascading Style Sheets.",
+      "Relational data modeling and query optimization for application and analytics workloads.",
     rating: 4,
-    icon: Icons.css3,
-  },
-  {
-    name: "React Native",
-    description:
-      "Develop cross-platform mobile apps using React for consistent and engaging experiences.",
-    rating: 4,
-    icon: Icons.react,
-  },
-  {
-    name: "Angular",
-    description:
-      "Build dynamic web apps with a TypeScript-based open-source framework by Google.",
-    rating: 3,
-    icon: Icons.angular,
-  },
-  {
-    name: "Redux",
-    description:
-      "Manage app state effectively using a predictable and centralized state container.",
-    rating: 4,
-    icon: Icons.redux,
-  },
-  {
-    name: "Socket.io",
-    description:
-      "Enable real-time, bidirectional communication between clients and servers effortlessly.",
-    rating: 3,
-    icon: Icons.socketio,
-  },
-  {
-    name: "Material UI",
-    description:
-      "Create stunning and responsive UIs with a popular React UI framework.",
-    rating: 4,
-    icon: Icons.mui,
-  },
-
-  {
-    name: "Tailwind CSS",
-    description:
-      "Design beautiful, modern websites faster with a utility-first CSS framework.",
-    rating: 5,
-    icon: Icons.tailwindcss,
+    icon: Icons.postgresql,
   },
   {
     name: "AWS",
-    description:
-      "Utilize Amazon Web Services to build and deploy scalable, reliable, and secure applications.",
+    description: "Cloud infrastructure for data storage, compute, and deployment.",
     rating: 3,
     icon: Icons.amazonaws,
   },
   {
-    name: "Bootstrap",
-    description:
-      "Quickly create responsive and appealing web designs using a popular CSS framework.",
-    rating: 2,
-    icon: Icons.bootstrap,
+    name: "Docker",
+    description: "Containerizing workflows for reproducibility and deployment.",
+    rating: 3,
+    icon: Icons.docker,
   },
   {
-    name: "MySQL",
+    name: "Kubernetes",
     description:
-      "Manage and organize relational databases efficiently for data-driven applications.",
-    rating: 2,
-    icon: Icons.mysql,
+      "Container orchestration concepts for scalable services and deployments.",
+    rating: 3,
+    icon: Icons.kubernetes,
   },
   {
-    name: "Netlify",
+    name: "TypeScript",
     description:
-      "Manage and organize relational databases efficiently for data-driven applications.",
-    rating: 4,
-    icon: Icons.netlify,
+      "Type-safe front-end development for full-stack data applications.",
+    rating: 3,
+    icon: Icons.typescript,
+  },
+  {
+    name: "JavaScript",
+    description:
+      "Building interactive data applications and visualization-heavy UIs when needed.",
+    rating: 3,
+    icon: Icons.javascript,
+  },
+  {
+    name: "React",
+    description: "Interactive UI for data products and dashboards.",
+    rating: 3,
+    icon: Icons.react,
+  },
+  {
+    name: "Next.js",
+    description: "Full-stack framework for shipping data-driven web apps.",
+    rating: 3,
+    icon: Icons.nextjs,
+  },
+  {
+    name: "Tailwind CSS",
+    description: "Rapid UI styling for clean, responsive interfaces.",
+    rating: 3,
+    icon: Icons.tailwindcss,
   },
 ];
 

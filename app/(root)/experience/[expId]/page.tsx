@@ -12,6 +12,7 @@ import ChipContainer from "@/components/ui/chip-container";
 import { ResponsiveTabs } from "@/components/ui/responsive-tabs";
 import { experiences } from "@/config/experience";
 import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
 
 interface ExperienceDetailPageProps {
   params: Promise<{
@@ -25,13 +26,9 @@ const getYearFromDate = (date: Date): string => {
 };
 
 // Helper function to get duration text
-const getDurationText = (
-  startDate: Date,
-  endDate: Date | "Present"
-): string => {
+const getDurationText = (startDate: Date, endDate: Date | "Present"): string => {
   const startYear = getYearFromDate(startDate);
-  const endYear =
-    typeof endDate === "string" ? "Present" : getYearFromDate(endDate);
+  const endYear = typeof endDate === "string" ? "Present" : getYearFromDate(endDate);
   return `${startYear} - ${endYear}`;
 };
 
@@ -42,9 +39,7 @@ export async function generateMetadata({
   const experience = experiences.find((c) => c.id === expId);
 
   if (!experience) {
-    return {
-      title: "Experience Not Found",
-    };
+    return { title: "Experience Not Found" };
   }
 
   return {
@@ -66,27 +61,92 @@ export default async function ExperienceDetailPage({
     redirect("/experience");
   }
 
+  // ✅ 横向 logo 自动放大（OPTIC / HDSI 这类）
+  const isWideLogo =
+    experience.id === "optic-lab" ||
+    experience.id === "hdsi" ||
+    experience.company.toLowerCase().includes("optic") ||
+    experience.company.toLowerCase().includes("data science institute") ||
+    experience.company.toLowerCase().includes("halıcıoglu");
+
+  // ✅ Summary onion parts (safe defaults)
+  const summaryHeadline = experience.narrative?.headline ?? "Role Summary";
+  const summarySubtitle = experience.narrative?.subtitle;
+  const summarySections = experience.narrative?.sections;
+
   const tabItems = [
     {
       value: "summary",
       label: "Summary",
       content: (
         <AnimatedSection delay={0.3}>
-          <div>
-            <h3 className="font-semibold mb-4 text-sm uppercase tracking-wide text-muted-foreground">
-              Role Summary
-            </h3>
-            <ul className="space-y-3">
-              {experience.description.map((desc, idx) => (
-                <li
-                  key={idx}
-                  className="text-base leading-relaxed flex items-start gap-3"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  {desc}
-                </li>
-              ))}
-            </ul>
+          <div className="space-y-8">
+            {/* Onion Layer 1: One-glance overview */}
+            <div>
+              <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">
+                {summaryHeadline}
+              </h3>
+              {summarySubtitle && (
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  {summarySubtitle}
+                </p>
+              )}
+            </div>
+
+            {/* Onion Layer 2: Diagram (visual core) */}
+            {experience.diagram && (
+              <div>
+                <h3 className="font-semibold mb-3 text-sm uppercase tracking-wide text-muted-foreground">
+                  System Diagram
+                </h3>
+                <div className="relative w-full overflow-hidden rounded-lg border bg-muted">
+                  <Image
+                    src={experience.diagram}
+                    alt={`${experience.company} system diagram`}
+                    width={1200}
+                    height={700}
+                    className="w-full h-auto object-contain"
+                    priority
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Onion Layer 3: Topic-based narrative (read-along) */}
+            {summarySections?.length ? (
+              <div className="space-y-6">
+                {summarySections.map((sec, i) => (
+                  <div key={i} className="space-y-3">
+                    <h4 className="text-base font-semibold">{sec.title}</h4>
+                    <div className="space-y-2">
+                      {sec.body.map((line, j) => (
+                        <p key={j} className="text-base leading-relaxed text-foreground/90">
+                          {line}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              // Fallback if narrative not provided
+              <div>
+                <h3 className="font-semibold mb-4 text-sm uppercase tracking-wide text-muted-foreground">
+                  Role Summary
+                </h3>
+                <ul className="space-y-3">
+                  {experience.description.map((desc, idx) => (
+                    <li
+                      key={idx}
+                      className="text-base leading-relaxed flex items-start gap-3"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      {desc}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </AnimatedSection>
       ),
@@ -125,10 +185,6 @@ export default async function ExperienceDetailPage({
               Technologies & Skills
             </h3>
             <ChipContainer textArr={experience.skills} />
-            <p className="mt-4 text-sm text-muted-foreground">
-              These are the primary technologies and skills utilized during my
-              time at {experience.company}.
-            </p>
           </div>
         </AnimatedSection>
       ),
@@ -154,16 +210,25 @@ export default async function ExperienceDetailPage({
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
                     {experience.logo && (
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg border-2 border-border overflow-hidden bg-white flex-shrink-0">
+                      <div
+                        className={cn(
+                          "rounded-lg border-2 border-border overflow-hidden bg-white flex-shrink-0 flex items-center justify-center",
+                          isWideLogo
+                            ? "w-40 h-20 sm:w-52 sm:h-24"
+                            : "w-16 h-16 sm:w-20 sm:h-20"
+                        )}
+                      >
                         <Image
                           src={experience.logo}
                           alt={experience.company}
-                          width={80}
-                          height={80}
-                          className="w-full h-full object-contain p-2"
+                          width={isWideLogo ? 520 : 96}
+                          height={isWideLogo ? 240 : 96}
+                          className={cn("w-full h-full object-contain", "p-2")}
+                          priority={isWideLogo}
                         />
                       </div>
                     )}
+
                     <div className="flex-1 text-center sm:text-left">
                       <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">
                         {experience.position}
@@ -183,17 +248,13 @@ export default async function ExperienceDetailPage({
                           </a>
                         )}
                       </div>
-                      <p className="text-muted-foreground">
-                        {experience.location}
-                      </p>
+                      <p className="text-muted-foreground">{experience.location}</p>
                     </div>
                   </div>
+
                   <div className="flex justify-center sm:justify-end">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20">
-                      {getDurationText(
-                        experience.startDate,
-                        experience.endDate
-                      )}
+                      {getDurationText(experience.startDate, experience.endDate)}
                     </span>
                   </div>
                 </div>
