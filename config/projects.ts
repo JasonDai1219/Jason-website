@@ -1,3 +1,42 @@
+// config/projects.ts
+import { ValidSkills } from "./constants";
+
+export type ProjectType = "Personal" | "Academic";
+
+export interface ProjectPageInfo {
+  title: string;
+  description: string;
+  imgArr: string[];
+}
+
+export interface ProjectDescriptionDetails {
+  paragraphs: string[];
+  bullets: string[];
+}
+
+export interface ProjectInterface {
+  id: string;
+  companyName: string;
+  type: ProjectType;
+  category: string[];
+  shortDescription: string;
+
+  websiteLink?: string; // empty string means "no link"
+  githubLink?: string;
+
+  techStack: (ValidSkills | string)[];
+  startDate: Date;
+  endDate: Date;
+
+  companyLogoImg: string;
+
+  pagesInfoArr: ProjectPageInfo[];
+  descriptionDetails: ProjectDescriptionDetails;
+}
+
+/* ============================= */
+/* ✅ Projects Data */
+/* ============================= */
 export const Projects: ProjectInterface[] = [
   {
     id: "time-machine-earth",
@@ -6,7 +45,7 @@ export const Projects: ProjectInterface[] = [
     category: ["Data Engineering", "Frontend", "AI Systems"],
     shortDescription:
       "Built an interactive spatiotemporal analytics system with a 3D globe interface and a relational (ER) schema; optimized worst-case queries from 15m23s → 1.552s and 39s → 1.628s via indexing, caching, and query rewrites.",
-    websiteLink: "YOUR_DEMO_LINK",
+    websiteLink: "", // TODO: add demo link when ready
     githubLink: "https://github.com/JasonDai1219/Earth-Time-Machine",
     techStack: ["React", "TypeScript", "PostgreSQL", "SQL", "Python", "Node.js"],
     startDate: new Date("2024-11-01"),
@@ -52,6 +91,7 @@ export const Projects: ProjectInterface[] = [
       ],
     },
   },
+
   {
     id: "foodseg-unet-vgg16",
     companyName: "Beyond UNet: Food Image Semantic Segmentation (FoodSeg103)",
@@ -59,7 +99,7 @@ export const Projects: ProjectInterface[] = [
     category: ["Machine Learning", "Computer Vision", "Research"],
     shortDescription:
       "Improved fine-grained food segmentation on FoodSeg103: baseline CNN mIoU 0.0588 → UNet 0.1217 → VGG16 encoder + decoder 0.1559, showing encoder strength dominates performance.",
-    websiteLink: "YOUR_DEMO_LINK",
+    websiteLink: "", // TODO: add demo link when ready
     githubLink: "https://github.com/JasonDai1219/Beyond_UNet",
     techStack: [
       "PyTorch",
@@ -131,6 +171,7 @@ export const Projects: ProjectInterface[] = [
       ],
     },
   },
+
   {
     id: "causal-stock-return",
     companyName: "Causal Discovery in Stock Return",
@@ -154,7 +195,6 @@ export const Projects: ProjectInterface[] = [
     startDate: new Date("2024-01-01"),
     endDate: new Date("2024-03-01"),
     companyLogoImg: "/projects/causal-stock/open_bg.jpg",
-
     pagesInfoArr: [
       {
         title: "System Overview",
@@ -206,7 +246,6 @@ export const Projects: ProjectInterface[] = [
         imgArr: ["/projects/causal-stock/perf_table.png"],
       },
     ],
-
     descriptionDetails: {
       paragraphs: [
         "Developed a hybrid stock-return prediction framework that integrates public sentiment, historical prices, and macro/microeconomic indicators to improve both predictive performance and interpretability.",
@@ -221,9 +260,10 @@ export const Projects: ProjectInterface[] = [
       ],
     },
   },
+
   {
     id: "dsc102-ai-tutor",
-    companyName: "AI -assisted Personalized Quiz Generator & Learning Tracker",
+    companyName: "AI-assisted Personalized Quiz Generator & Learning Tracker",
     type: "Academic",
     category: ["AI Systems", "Web Dev", "UI/UX"],
     shortDescription:
@@ -238,49 +278,50 @@ export const Projects: ProjectInterface[] = [
       {
         title: "Personalized Quiz Generation",
         description:
-          "Generate quizzes by week (Weeks 1–10) or by specific concepts, with configurable question counts. This allows students to target precise topics instead of generic practice.",
+          "Generate quizzes by week (Weeks 1–10) or by specific concepts, with configurable question counts.",
         imgArr: ["/projects/dsc102-ai-tutor/quiz-generation.png"],
       },
       {
         title: "Question History & Error Tracking",
         description:
-          "The system logs each quiz attempt and categorizes results as correct or incorrect, enabling students to review their past mistakes and understand recurring error patterns.",
+          "Logs each quiz attempt and categorizes results as correct/incorrect for review.",
         imgArr: ["/projects/dsc102-ai-tutor/question-history.png"],
       },
       {
         title: "Concept-Level Error Visualization",
         description:
-          "Aggregated error frequencies are visualized at the concept level, helping students quickly identify weak areas and prioritize review topics.",
+          "Aggregated error frequencies visualized at concept level to target weak areas.",
         imgArr: ["/projects/dsc102-ai-tutor/error-visualization.png"],
       },
       {
         title: "Targeted Resource Recommendations",
         description:
-          "For each weak concept, the system retrieves curated external learning resources via the SHARP API, enabling focused follow-up study.",
+          "Retrieves curated external learning resources via the SHARP API.",
         imgArr: ["/projects/dsc102-ai-tutor/resource-recommendation.png"],
       },
     ],
     descriptionDetails: {
       paragraphs: [
-        "DSC102 AI Tutor is designed to reduce students’ over-reliance on generic LLM answers by shifting the learning workflow toward active practice and self-assessment.",
-        "The system reorganizes course materials into week-level and concept-level structures to generate tailored quizzes. Students must submit an answer before accessing the correct solution, discouraging passive answer consumption.",
-        "To make progress measurable, the app records concept-level error frequencies and quiz history per student, enabling learners to identify weaknesses and plan revisions. It also surfaces external resources via the SHARP API for targeted follow-up study.",
+        "DSC102 AI Tutor shifts the learning workflow toward active practice and self-assessment.",
+        "The system reorganizes course materials into week-level and concept-level structures to generate tailored quizzes, and enforces answer submission before solution reveal.",
+        "The app records concept-level error frequencies and quiz history per student on AWS, and surfaces external resources via SHARP API for targeted follow-up.",
       ],
       bullets: [
-        "Built an LLM-assisted quiz generation and learning tracking tool for DSC102 with week-level and concept-based customization.",
-        "Reduced answer over-reliance by enforcing answer submission before solution reveal.",
+        "Built an LLM-assisted quiz generation and learning tracking tool with week-level and concept-based customization.",
+        "Enforced answer submission before solution reveal.",
         "Implemented per-user concept-level error tracking and quiz history logging stored on AWS.",
-        "Integrated SHARP API to recommend concept-relevant external learning resources.",
+        "Integrated SHARP API to recommend concept-relevant learning resources.",
       ],
     },
   },
+
   {
     id: "glaucoma-uncertainty-aware-diagnosis",
     companyName: "Uncertainty-Aware Glaucoma Diagnosis with Conformal Prediction",
     type: "Personal",
     category: ["Machine Learning", "AI Systems", "Healthcare AI"],
     shortDescription:
-      "Built an uncertainty-aware medical classification system for glaucoma diagnosis using conformal prediction and an expert-in-the-loop decision pipeline, significantly reducing false negatives in high-risk clinical settings.",
+      "Built an uncertainty-aware medical classification system for glaucoma diagnosis using conformal prediction and an expert-in-the-loop decision pipeline, reducing false negatives in high-risk settings.",
     websiteLink: "",
     githubLink: "https://github.com/JasonDai1219/uncertainty-aware-medAI",
     techStack: [
@@ -297,47 +338,45 @@ export const Projects: ProjectInterface[] = [
       {
         title: "Problem Motivation: Reducing False Negatives in Medical AI",
         description:
-          "Standard evaluation metrics such as accuracy and AUROC can obscure clinically dangerous false negatives in disease screening. This project reframes glaucoma diagnosis as a decision-safety problem rather than a pure prediction task.",
+          "Reframes glaucoma diagnosis as a decision-safety problem rather than pure classification.",
         imgArr: ["/projects/glaucoma-cp/motivation.png"],
       },
       {
         title: "Baseline Modeling on Glaucoma EHR Data",
         description:
-          "A reasonably strong baseline classifier was trained on a glaucoma EHR dataset and evaluated using accuracy, AUROC, AUPRC, and probability distributions. Despite solid aggregate performance, the model still produced non-negligible false negatives.",
+          "Trained a baseline classifier and evaluated AUROC/AUPRC and error profiles.",
         imgArr: ["/projects/glaucoma-cp/baseline-results.png"],
       },
       {
         title: "Conformal Prediction for Sample-Level Uncertainty",
         description:
-          "Split conformal prediction was applied to convert point predictions into prediction sets. This explicitly separates confident cases from uncertain cases, where the model abstains instead of forcing a potentially unsafe decision.",
+          "Applied split conformal prediction to convert point predictions into prediction sets.",
         imgArr: ["/projects/glaucoma-cp/conformal-prediction.png"],
       },
       {
         title: "Expert-in-the-Loop Decision Pipeline",
         description:
-          "An expert-in-the-loop workflow was designed to mirror clinical practice: confident cases are handled automatically, while uncertain cases are escalated to an expert. Expert performance is modeled using GPT-based predictions or parameterized sensitivity and specificity.",
+          "Escalates uncertain cases to an expert to mirror real clinical workflows.",
         imgArr: ["/projects/glaucoma-cp/expert-loop.png"],
       },
       {
         title: "Quantifying False Negative Reduction",
         description:
-          "We derived an analytical model for post-intervention false negatives, showing how conformal thresholds and expert sensitivity jointly control recall improvements, safety guarantees, and expert workload.",
+          "Analyzed how thresholds and expert sensitivity control safety/workload tradeoffs.",
         imgArr: ["/projects/glaucoma-cp/fn-analysis.png"],
       },
     ],
     descriptionDetails: {
       paragraphs: [
-        "This project explores how uncertainty-aware decision-making can improve safety in medical AI systems, using glaucoma diagnosis from EHR data as a case study.",
-        "Rather than optimizing purely for accuracy, the system explicitly models uncertainty using conformal prediction, allowing the classifier to abstain on ambiguous cases instead of producing potentially dangerous false negatives.",
-        "Uncertain cases are escalated to an expert-in-the-loop, simulated via GPT-based judgments or parameterized expert sensitivity and specificity, closely mirroring real-world clinical workflows.",
-        "By analytically modeling the interaction between conformal prediction and expert intervention, the project demonstrates that significant reductions in false negatives are achievable even when expert accuracy is imperfect.",
+        "This project explores uncertainty-aware decision-making for safer medical AI, using glaucoma diagnosis from EHR data as a case study.",
+        "Instead of forcing predictions on ambiguous cases, conformal prediction supports abstention with statistical guarantees.",
+        "Uncertain cases are escalated to an expert-in-the-loop, simulated via GPT-based judgments or parameterized expert performance.",
       ],
       bullets: [
         "Reframed glaucoma diagnosis as a decision-safety problem rather than a pure classification task.",
         "Applied split conformal prediction to obtain per-sample uncertainty guarantees.",
         "Designed an expert-in-the-loop escalation mechanism for uncertain cases.",
-        "Derived a closed-form model to quantify false negative reduction under expert intervention.",
-        "Demonstrated that uncertainty-aware pipelines can significantly improve recall in high-risk medical settings.",
+        "Analyzed false-negative reduction under expert intervention and conformal thresholds.",
       ],
     },
   },

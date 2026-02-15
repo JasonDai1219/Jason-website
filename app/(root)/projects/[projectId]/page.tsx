@@ -18,6 +18,15 @@ interface ProjectPageProps {
   }>;
 }
 
+/* ============================= */
+/* ✅ 明确 page 类型（修复 implicit any） */
+/* ============================= */
+type ProjectPageInfo = {
+  title: string;
+  description: string;
+  imgArr: string[];
+};
+
 export default async function Project({ params }: ProjectPageProps) {
   const { projectId } = await params;
   const project = Projects.find((val) => val.id === projectId);
@@ -144,35 +153,45 @@ export default async function Project({ params }: ProjectPageProps) {
         />
       </div>
 
+      {/* ============================= */}
       {/* Page Info */}
+      {/* ============================= */}
       <div className="mb-7">
         <h2 className="font-heading text-3xl mb-5">Page Info</h2>
-        {project.pagesInfoArr.map((page, idx) => (
-          <div key={idx}>
-            <h3 className="flex items-center font-heading text-xl mt-3">
-              <Icons.star className="h-5 w-5 mr-2" />
-              {page.title}
-            </h3>
-            <p className="mt-1">{page.description}</p>
-            {page.imgArr.map((img, i) => (
-              <Image
-                key={i}
-                src={img}
-                alt={img}
-                width={720}
-                height={405}
-                className="my-4 rounded-md border bg-muted"
-              />
-            ))}
-          </div>
-        ))}
+
+        {project.pagesInfoArr.map(
+          (page: ProjectPageInfo, idx: number) => (
+            <div key={idx}>
+              <h3 className="flex items-center font-heading text-xl mt-3">
+                <Icons.star className="h-5 w-5 mr-2" />
+                {page.title}
+              </h3>
+
+              <p className="mt-1">{page.description}</p>
+
+              {page.imgArr.map((img: string, i: number) => (
+                <Image
+                  key={i}
+                  src={img}
+                  alt={img}
+                  width={720}
+                  height={405}
+                  className="my-4 rounded-md border bg-muted"
+                />
+              ))}
+            </div>
+          )
+        )}
       </div>
 
       <hr className="mt-12" />
 
       {/* Footer Back */}
       <div className="flex justify-center py-6 lg:py-10">
-        <Link href="/projects" className={cn(buttonVariants({ variant: "ghost" }))}>
+        <Link
+          href="/projects"
+          className={cn(buttonVariants({ variant: "ghost" }))}
+        >
           <Icons.chevronLeft className="mr-2 h-4 w-4" />
           All Projects
         </Link>

@@ -21,7 +21,7 @@ const renderContent = (tabVal: string) => {
   }
 
   return (
-    <div className="mx-auto my-4 grid justify-center gap-4 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
+    <div className="mx-auto my-4 grid justify-center gap-4 sm:grid-cols-2 lg:grid-cols-3 static items-stretch">
       {projectArr.map((project) => (
         <ProjectCard project={project} key={project.id} />
       ))}
@@ -31,21 +31,9 @@ const renderContent = (tabVal: string) => {
 
 export default function ProjectsPage() {
   const tabItems = [
-    {
-      value: "all",
-      label: "All",
-      content: renderContent("all"),
-    },
-    {
-      value: "personal",
-      label: "Personal",
-      content: renderContent("personal"),
-    },
-    {
-      value: "academic",
-      label: "Academic",
-      content: renderContent("academic"),
-    },
+    { value: "all", label: "All", content: renderContent("all") },
+    { value: "personal", label: "Personal", content: renderContent("personal") },
+    { value: "academic", label: "Academic", content: renderContent("academic") },
   ];
 
   return (
