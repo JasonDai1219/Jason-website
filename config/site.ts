@@ -6,7 +6,7 @@ export const siteConfig = {
     "Ruizhe (Jason) Dai is a Data Science and Machine Learning engineer focused on building data-driven systems and AI-assisted tools. Experience includes disease progression modeling, multimodal model evaluation, and large-scale data pipelines across research and industry.",
   url: "https://YOUR_DOMAIN.com",
   links: {
-    github: "https://github.com/YOUR_GITHUB_USERNAME",
+    github: "https://github.com/JasonDai1219",
     linkedin: "https://www.linkedin.com/in/jason-dai9",
     email: "mailto:dai9@seas.upenn.edu",
     templateRepo: "https://github.com/namanbarkiya/minimal-next-portfolio",
