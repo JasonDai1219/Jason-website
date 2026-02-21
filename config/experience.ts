@@ -16,6 +16,13 @@ export interface ExperienceInterface {
   // ✅ 方法结构图 / 流程图（放在 public 下面）
   diagram?: string;
 
+  // ✅ 证明材料（比如论文投稿截图、奖项证明等）
+  evidence?: {
+    image: string; // public 下的路径（e.g., "/experience/hdsi/chi-play-submission.png"）
+    alt?: string; // 图片 alt 文本
+    caption?: string; // 图片说明（可选）
+  };
+
   // ✅ 洋葱结构：网站叙事（diagram-aligned）
   narrative?: {
     headline?: string; // 第一层标题（扫一眼）
@@ -65,7 +72,7 @@ export const experiences: ExperienceInterface[] = [
           title: "Project Overview (Context)",
           body: [
             "Glaucoma progression modeling requires reasoning over multi-year, irregularly sampled patient visits. Clinical data includes structured visual field measurements, treatment histories, and heterogeneous follow-up intervals.",
-            "Standard forecasting models focus on point prediction accuracy, but clinical deployment requires calibrated uncertainty and robustness under dataset shift."
+            "Standard forecasting models focus on point prediction accuracy, but clinical deployment requires calibrated uncertainty and robustness under dataset shift.",
           ],
         },
 
@@ -73,7 +80,7 @@ export const experiences: ExperienceInterface[] = [
           title: "The Core Challenge",
           body: [
             "Longitudinal medical data is sparse, non-stationary, and influenced by treatment interventions that alter disease trajectories.",
-            "Additionally, cross-cohort generalization is difficult due to label shift, missingness mechanisms, and evolving clinical practice patterns."
+            "Additionally, cross-cohort generalization is difficult due to label shift, missingness mechanisms, and evolving clinical practice patterns.",
           ],
         },
 
@@ -82,7 +89,7 @@ export const experiences: ExperienceInterface[] = [
           body: [
             "Patient histories are structured into trajectory representations, treating each visit as a sequential state within a decision process.",
             "Transformer-based sequence models are used to capture temporal dependencies across visual field progression and intervention signals.",
-            "The modeling framework is designed to support both forecasting and downstream decision-oriented evaluation."
+            "The modeling framework is designed to support both forecasting and downstream decision-oriented evaluation.",
           ],
         },
 
@@ -90,7 +97,7 @@ export const experiences: ExperienceInterface[] = [
           title: "Uncertainty & Shift-Aware Evaluation",
           body: [
             "Evaluation incorporates conformal calibration techniques to quantify predictive reliability under distributional variation.",
-            "Shift-aware validation workflows assess robustness across internal and external cohorts, focusing on coverage stability rather than raw accuracy."
+            "Shift-aware validation workflows assess robustness across internal and external cohorts, focusing on coverage stability rather than raw accuracy.",
           ],
         },
 
@@ -98,11 +105,11 @@ export const experiences: ExperienceInterface[] = [
           title: "Research Status",
           body: [
             "This is ongoing work focused on improving robustness and reproducibility in longitudinal clinical modeling.",
-            "Current efforts emphasize reliable evaluation pipelines and systematic analysis of uncertainty under cohort shift."
+            "Current efforts emphasize reliable evaluation pipelines and systematic analysis of uncertainty under cohort shift.",
           ],
-        }
-      ]
-    }
+        },
+      ],
+    },
   },
 
   {
@@ -115,13 +122,13 @@ export const experiences: ExperienceInterface[] = [
 
     // 第一层（简洁一句话 Summary tab 看到的）
     description: [
-      "Designed an AI-assisted data collection system that transforms GeoGuessr gameplay into structured multimodal reasoning traces for improving vision-language model grounding."
+      "Designed an AI-assisted data collection system that transforms GeoGuessr gameplay into structured multimodal reasoning traces for improving vision-language model grounding.",
     ],
 
     achievements: [
       "Improved GPT-4o visual grounding performance by ~15% through structured human–AI data collection and evaluation pipelines.",
       "Built scalable agentic workflows for annotation, filtering, and automated benchmarking across interface conditions.",
-      "Co–first author on CHI 2026 submission evaluating reasoning behavior under time constraints."
+      "Co–first author on CHI PLAY 2026 full paper submission evaluating reasoning behavior under time constraints.",
     ],
 
     skills: [
@@ -140,6 +147,14 @@ export const experiences: ExperienceInterface[] = [
     // 第二层（视觉核心）
     diagram: "/experience/hdsi/diagram.png",
 
+    // ✅ 投稿/证明材料：把截图放到 public/experience/hdsi/chi-play-submission.png
+    evidence: {
+      image: "/experience/hdsi/chi-play-submission.png",
+      alt: "CHI PLAY 2026 Full Papers submission page (Submission ID: 6456)",
+      caption:
+        "CHI PLAY 2026 Full Papers submission (ID: 6456) — Aladdin: Playing GeoGuessr with an AI Helper. Status: under review.",
+    },
+
     // 第三层（洋葱展开 narrative）
     narrative: {
       headline:
@@ -153,7 +168,7 @@ export const experiences: ExperienceInterface[] = [
           title: "Project Overview (Context)",
           body: [
             "Vision-language models often struggle with fine-grained geographic cues such as road markings, vegetation, signage language, and architectural style. Improving alignment requires more than labels — it requires capturing the reasoning process behind predictions.",
-            "Traditional annotation pipelines collect answers, but rarely capture how humans arrive at those answers."
+            "Traditional annotation pipelines collect answers, but rarely capture how humans arrive at those answers.",
           ],
         },
 
@@ -161,7 +176,7 @@ export const experiences: ExperienceInterface[] = [
           title: "The Core Challenge",
           body: [
             "Large-scale annotation is expensive and often lacks transparency in reasoning quality. Additionally, reasoning depth varies significantly under different cognitive constraints such as time pressure.",
-            "The challenge was not only collecting data, but designing a system that produces structured, reproducible reasoning traces at scale."
+            "The challenge was not only collecting data, but designing a system that produces structured, reproducible reasoning traces at scale.",
           ],
         },
 
@@ -170,7 +185,7 @@ export const experiences: ExperienceInterface[] = [
           body: [
             "The system embeds structured interaction prompts directly into GeoGuessr gameplay, guiding players to provide evidence, explanation, and decision signals as part of natural play.",
             "Each session captures image evidence, textual justification, interaction metadata (zoom, search, timing), and final prediction — forming a multimodal reasoning record.",
-            "These structured traces are stored, filtered, and processed through automated pipelines to support downstream fine-tuning and evaluation."
+            "These structured traces are stored, filtered, and processed through automated pipelines to support downstream fine-tuning and evaluation.",
           ],
         },
 
@@ -178,7 +193,7 @@ export const experiences: ExperienceInterface[] = [
           title: "Deep Dive: Two Design Decisions",
           body: [
             "Behavior-first data design: instead of labeling static images, the system captures temporal interaction signals, enabling analysis of reasoning paths rather than just outcomes.",
-            "Time-pressure as experimental variable: study conditions varied time limits to analyze how reasoning quality shifts between intuitive and evidence-driven decision modes."
+            "Time-pressure as experimental variable: study conditions varied time limits to analyze how reasoning quality shifts between intuitive and evidence-driven decision modes.",
           ],
         },
 
@@ -186,7 +201,7 @@ export const experiences: ExperienceInterface[] = [
           title: "Evaluation & Impact",
           body: [
             "Structured reasoning traces improved GPT-4o visual grounding accuracy by ~15% on held-out evaluation tasks.",
-            "Automated evaluation scripts enabled systematic comparison across UI variants and time constraints, turning interaction design into a measurable experimental factor."
+            "Automated evaluation scripts enabled systematic comparison across UI variants and time constraints, turning interaction design into a measurable experimental factor.",
           ],
         },
 
@@ -195,9 +210,18 @@ export const experiences: ExperienceInterface[] = [
           body: [
             "One limitation we observed is that outcome correctness does not always imply reasoning quality. Some players arrive at correct guesses with shallow or incomplete explanations, which can distort supervision signals if not filtered carefully.",
             "If rebuilding today, I would introduce reasoning-quality scoring and consistency checks (e.g., explanation–evidence alignment, cross-round stability) to distinguish genuine inference from lucky guesses or low-effort annotations.",
-            "I would also formalize lightweight data validation mechanisms to detect adversarial or malicious inputs before they propagate into fine-tuning pipelines."
+            "I would also formalize lightweight data validation mechanisms to detect adversarial or malicious inputs before they propagate into fine-tuning pipelines.",
           ],
-        }
+        },
+
+        {
+          title: "Publication Status",
+          body: [
+            "Full paper submission to CHI PLAY 2026 (Submission ID: 6456).",
+            "Co–first author; evaluates reasoning behavior under different time constraints and how structured human–AI interaction yields fine-grained reasoning traces.",
+            "Status: under review.",
+          ],
+        },
       ],
     },
   },
@@ -380,5 +404,5 @@ export const experiences: ExperienceInterface[] = [
         },
       ],
     },
-  }
+  },
 ];

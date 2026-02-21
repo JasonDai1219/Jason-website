@@ -127,6 +127,30 @@ export default async function ExperienceDetailPage({
                     </div>
                   </div>
                 ))}
+
+                {/* ✅ Evidence block (e.g., CHI PLAY submission screenshot) */}
+                {experience.evidence?.image && (
+                  <div className="pt-2">
+                    <h3 className="font-semibold mb-3 text-sm uppercase tracking-wide text-muted-foreground">
+                      Evidence
+                    </h3>
+
+                    <figure className="overflow-hidden rounded-lg border bg-muted">
+                      <Image
+                        src={experience.evidence.image}
+                        alt={experience.evidence.alt ?? "Evidence image"}
+                        width={1200}
+                        height={700}
+                        className="w-full h-auto object-contain"
+                      />
+                      {experience.evidence.caption && (
+                        <figcaption className="px-4 py-3 text-sm text-muted-foreground">
+                          {experience.evidence.caption}
+                        </figcaption>
+                      )}
+                    </figure>
+                  </div>
+                )}
               </div>
             ) : (
               // Fallback if narrative not provided
